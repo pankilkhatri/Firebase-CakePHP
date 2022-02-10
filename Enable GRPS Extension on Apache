@@ -1,0 +1,47 @@
+PHP Fatal error:  Uncaught Google\Cloud\Core\Exception\GoogleException: The requested client requires the gRPC extension.
+
+1. sudo apt-get install autoconf zlib1g-dev php7.4-dev php-pear
+2. sudo apt-get install php7.4-dev php-pear phpunit
+3. sudo wget https://phar.phpunit.de/phpunit.phar
+4. sudo chmod +x phpunit.phar
+5. sudo mv phpunit.phar /usr/bin/phpunit
+6. sudo pecl install grpc
+7. You should add ";extension=grpc" to /etc/php/7.3/cli/php.ini
+
+
+
+still getting error
+8. sudo git clone -b v1.33.2 https://github.com/grpc/grpc
+9. cd grpc/src/php/ext/grpc
+10. sudo phpize
+11. sudo ./configure
+12. sudo make
+13. sudo make install
+
+cd grpc
+git submodule update --init
+sudo make
+sudo make install
+
+
+Please reinstall the grpc distribution
+sudo pecl install grpc-beta
+
+still getting error
+
+https://gist.github.com/alfianmalik/463251cb5be13012b6646eb5fe13c6ed
+folloe steps
+
+sudo apt install php7.4-dev protobuf-compiler protobuf-compiler-grpc
+sudo pecl channel-update pecl.php.net
+sudo pecl install grpc protobuf
+
+sudo -i
+cd /etc/php/7.4/mods-available  
+echo "extension=protobuf.so" > protobuf.ini
+echo "extension=grpc.so" > grpc.ini
+phpenmod grpc protobuf    
+php -r 'phpinfo();' | grep -i "\(grpc\|protobuf\)"
+
+Still gettin error than follow this link
+https://ask.osify.com/qa/11804
